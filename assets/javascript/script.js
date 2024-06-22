@@ -1,40 +1,37 @@
 // Get a reference to the #add-employees-btn element
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
-// Collect employee data
+// Collect employee data 
+const employees = [];
 const collectEmployees = function () {
-  const employees = [];
   let continueAdding = true;
 
   while (continueAdding) {
-  const firstName = prompt('Enter employee first name');
- const lastName = prompt('Enter employee last name');
- const salary = parseFloat(prompt('Enter employee salary'));
+    const firstName = prompt('Enter employee first name');
+    const lastName = prompt('Enter employee last name');
+    const salaryInput = prompt('Enter employee salary');
+    let salary = 0;
+    if (!isNaN(salaryInput)) {
+      salary = parseFloat(salaryInput);
+    }
 
- //Create employee object
- const employee = {
-  firstName: firstName,
-  lastName: lastName,
-  salary: salary
-  
- };
+    //Create employee object
+    const employee = {
+      firstName: firstName,
+      lastName: lastName,
+      salary: salary
 
- //add employee object to employees array
- employees.push(employee);
+    };
 
- //ask if user wants to add more employees
- const response = prompt('Do you want to add more employees?');
- if (response.toLowerCase() !== 'yes') {
-  continueAdding = false;
- }
-}
-return employees;
+    //add employee object to employees array
+    employees.push(employee);
+
+    //ask if user wants to add more employees
+    continueAdding = confirm('Do you want to add more employees?');
+  }
+  return employees;
   // TODO: Get user input to create and return an array of employee objects
 };
-
-
-const employeeList = collectEmployees();
-console.log(employeeList);
 
 // Display the average salary
 const displayAverageSalary = function (employeesArray) {
@@ -56,8 +53,9 @@ const getRandomEmployee = function (employeesArray) {
   const randomEmployee = employeesArray[randomIndex];
   console.log(`The random employee is ${randomEmployee.firstName} ${randomEmployee.lastName}`);
   // TODO: Select and display a random employee
+
 };
-getRandomEmployee(employee);
+
 
 /*
   ====================
